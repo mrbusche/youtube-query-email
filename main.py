@@ -1,8 +1,11 @@
-from youtube_api import youtube_search, get_video_stats
-from email_sender import send_email
-from config import SEARCH_TERMS, RECIPIENT_EMAILS, DAYS_BACK
 from datetime import datetime
+
 import pytz
+
+from config import DAYS_BACK, RECIPIENT_EMAILS, SEARCH_TERMS
+from email_sender import send_email
+from youtube_api import get_video_stats, youtube_search
+
 
 def format_results(search_term, results):
     email_body = f"Here are the most viewed videos for '{search_term}' in the last {DAYS_BACK} days\n"

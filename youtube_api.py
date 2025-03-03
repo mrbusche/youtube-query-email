@@ -1,7 +1,10 @@
+from datetime import datetime, timedelta, timezone
+
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from datetime import datetime, timedelta, timezone
-from config import API_KEY, MAX_RESULTS, SORT_ORDER, DAYS_BACK, YOUTUBE_USERNAME
+
+from config import API_KEY, DAYS_BACK, MAX_RESULTS, SORT_ORDER, YOUTUBE_USERNAME
+
 
 def check_if_commented(youtube, video_id):
     try:
