@@ -26,9 +26,9 @@ def format_results(search_term, results):
         email_body += f"Published: {formatted_date}\n"
 
         # Add comment status
-        if video["already_commented"] is True:
+        if video["already_commented"]:
             email_body += "Status: Already commented on this video\n"
-        elif video["already_commented"] is False:
+        elif not video["already_commented"]:
             email_body += "Status: No comment yet\n"
         else:
             email_body += "Status: Unable to check comment status\n"
