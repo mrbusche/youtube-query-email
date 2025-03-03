@@ -7,7 +7,7 @@ from config import EMAIL_PASSWORD, SENDER_EMAIL
 
 def send_email(recipient_emails, subject, body):
     try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
 
         server.login(SENDER_EMAIL, EMAIL_PASSWORD)
@@ -17,11 +17,11 @@ def send_email(recipient_emails, subject, body):
 
         for recipient in recipient_emails:
             msg = MIMEMultipart()
-            msg['From'] = SENDER_EMAIL
-            msg['To'] = recipient
-            msg['Subject'] = subject
+            msg["From"] = SENDER_EMAIL
+            msg["To"] = recipient
+            msg["Subject"] = subject
 
-            msg.attach(MIMEText(body, 'plain'))
+            msg.attach(MIMEText(body, "plain"))
 
             server.send_message(msg)
             print(f"Email sent successfully to {recipient}")
