@@ -1,24 +1,21 @@
 from datetime import datetime
+
 import pytz
 
 from config import DAYS_BACK, RECIPIENT_EMAILS, SEARCH_TERMS
 from emails import format_results, send_email
+from transcription import get_transcript
 from youtube_api import get_video_stats, youtube_search
 
 
 def main():
     print("Starting YouTube search...")
-    all_results = ""
+    all_results = []
 
     for search_term in SEARCH_TERMS:
         print(f"Searching for: {search_term}")
         results = youtube_search(search_term)
-
-        if results:
-            print(f"Found {len(results)} results")
-            all_results += format_results(search_term, results)
-        else:
-            print(f"No results found for {search_term}")
+        all_results += results
 
     if all_results:
         central = pytz.timezone("America/Chicago")
@@ -27,7 +24,8 @@ def main():
         print(f"RECIPIENT_EMAILS: {RECIPIENT_EMAILS}")
         print(f"DAYS_BACK: {DAYS_BACK}")
         print(f"subject: {subject}")
-        print(f"all_results: {all_results}")
+        for result in all_results:
+            result["transcription"] = get_transcript(result["video_id"])
         send_email(RECIPIENT_EMAILS, subject, all_results)
         print("Search complete and results emailed!")
     else:

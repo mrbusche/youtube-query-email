@@ -56,6 +56,7 @@ def youtube_search(query):
                 order=SORT_ORDER,
                 publishedAfter=days_ago,
                 type="video",
+                relevanceLanguage="en",
             )
             .execute()
         )
@@ -78,6 +79,7 @@ def youtube_search(query):
                         "published_at": search_result["snippet"]["publishedAt"],
                         "url": f"https://www.youtube.com/watch?v={video_id}",
                         "already_commented": already_commented,
+                        "search_term": query,
                     }
                 )
 
