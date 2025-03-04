@@ -3,9 +3,9 @@ from datetime import datetime
 import pytz
 
 from config import DAYS_BACK, RECIPIENT_EMAILS, SEARCH_TERMS
-from emails import format_results, send_email
+from emails import send_email
 from transcription import get_transcript
-from youtube_api import get_video_stats, youtube_search
+from youtube_api import youtube_search
 
 
 def main():
