@@ -1,5 +1,5 @@
-from datetime import datetime
 import smtplib
+from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -7,13 +7,12 @@ from config import DAYS_BACK, EMAIL_PASSWORD, SENDER_EMAIL
 from youtube_api import get_video_stats
 
 
-def format_results(search_term, results):
-    email_body = (
-        f"Here are the most viewed videos for '{search_term}' in the last {DAYS_BACK} days\n"
-    )
-    email_body += "=" * 75 + "\n\n"
-
+def format_results(results):
+    email_body = ""
     for i, video in enumerate(results, 1):
+        if video["search_term"] != results[i - 2]["search_term"]:
+            email_body += f"Here are the most viewed videos for '{video['search_term']}' in the last {DAYS_BACK} days\n"
+            email_body += "=" * 75 + "\n\n"
         video_url = f"https://www.youtube.com/watch?v={video['video_id']}"
 
         # Convert the published_at time to a more readable format
@@ -24,6 +23,7 @@ def format_results(search_term, results):
         email_body += f"Watch at: {video_url}\n"
         email_body += f"Channel: {video['channel']}\n"
         email_body += f"Published: {formatted_date}\n"
+        email_body += f"Transcription: {video.get('transcription', 'No transcription available')}\n"
 
         # Add comment status
         if video["already_commented"]:
@@ -45,7 +45,9 @@ def format_results(search_term, results):
     return email_body
 
 
-def send_email(recipient_emails, subject, body):
+def send_email(recipient_emails, subject, results):
+    body = format_results(results)
+
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
