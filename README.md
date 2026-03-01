@@ -14,7 +14,6 @@ SEARCH_TERMS // a comma separated list is allowed
 Format files locally with ruff
 
 ```python
-pip install ruff -U
-ruff check --select I --fix
-ruff format
+uv run ruff check --select I --fix
+uv run ruff format
 ```
