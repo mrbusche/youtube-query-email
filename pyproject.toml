@@ -1,3 +1,13 @@
+[project]
+name = "youtube-query-email"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "google-api-python-client==2.190.0",
+    "python-dotenv==1.2.2",
+    "pytz==2025.2",
+]
+
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -75,3 +85,8 @@ docstring-code-format = false
 # This only has an effect when the `docstring-code-format` setting is
 # enabled.
 docstring-code-line-length = "dynamic"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.4",
+]
