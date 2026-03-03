@@ -5,7 +5,7 @@ requires-python = ">=3.12"
 dependencies = [
     "google-api-python-client==2.191.0",
     "python-dotenv==1.2.2",
-    "pytz==2025.2",
+    "pytz==2026.1.post1",
 ]
 
 [tool.ruff]
