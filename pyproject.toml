@@ -3,7 +3,7 @@ name = "youtube-query-email"
 version = "1.0.0"
 requires-python = ">=3.12"
 dependencies = [
-    "google-api-python-client==2.192.0",
+    "google-api-python-client==2.193.0",
     "python-dotenv==1.2.2",
     "pytz==2026.1.post1",
 ]
