@@ -5,7 +5,7 @@ requires-python = ">=3.14"
 dependencies = [
     "google-api-python-client==2.201.0",
     "python-dotenv==1.2.4",
-    "pytz==2026.4",
+    "pytz==2026.5",
     "ruff==0.16.10",
 ]
 
