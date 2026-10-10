@@ -6,7 +6,7 @@ dependencies = [
     "google-api-python-client==2.201.0",
     "python-dotenv==1.2.4",
     "pytz==2026.5",
-    "ruff==0.16.10",
+    "ruff==0.17.0",
 ]
 
 [tool.pytest.ini_options]
